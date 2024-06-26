@@ -26,10 +26,16 @@ testing = st.Page(
     title="Testing", 
     # icon=":material/notification_important:"
 )
+predict = st.Page(
+    "Predict/prediction-app.py", 
+    title="Iris App", 
+    # icon=":material/notification_important:"
+)
 
 pg = st.navigation(
     {
         "Dashboard": [dashboard],
+        "Predict": [predict],
         "Explanation": [data, preparation, training, testing],
     }
 )
