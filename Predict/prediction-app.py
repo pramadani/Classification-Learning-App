@@ -57,10 +57,7 @@ custom_df['species'] = ['Custom Input']
 plot_df = pd.concat([df, custom_df], ignore_index=True)
 
 # Pairplot with hue based on species
-pairplot = sns.pairplot(plot_df, hue='species', palette='Set1', markers=['o', 's', 'D', 'X'], height=2.5)
+pairplot = sns.pairplot(plot_df, hue='species', palette={'setosa': '#FF6969', 'versicolor': '#F9D689', 'virginica': '#37B7C3', 'Custom Input': 'b'}, markers=['^', 's', 'D', 'o'], height=2.5)
 
-# Set custom marker size for the custom input point
-for i, j in zip(*np.triu_indices_from(pairplot.axes, 1)):
-    pairplot.axes[i, j].scatter(custom_df.iloc[:, j], custom_df.iloc[:, i], marker='X', color='red', edgecolor='k', s=100)
-
+# Show the plot
 st.pyplot(pairplot)

@@ -51,3 +51,13 @@ sns.heatmap(iris_df.corr(), annot=True, cmap='viridis', ax=ax_heatmap)
 
 # Menampilkan plot heatmap menggunakan st.pyplot
 st.pyplot(fig_heatmap)
+
+# Visualizing all feature combinations with pairplot
+df = pd.DataFrame(iris.data, columns=iris.feature_names)
+df['species'] = iris.target_names[y]
+
+# Pairplot with hue based on species
+pairplot = sns.pairplot(df, hue='species', palette={'setosa': '#FF6969', 'versicolor': '#F9D689', 'virginica': '#37B7C3'}, markers=['^', 's', 'D'], height=2.5)
+
+# Show the plot
+st.pyplot(pairplot)
