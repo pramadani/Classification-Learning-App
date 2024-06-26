@@ -9,27 +9,27 @@ dashboard = st.Page(
 data = st.Page(
     "Tutorial/data.py", 
     title="Dataset", 
-    # icon=":material/radioactive_sign:"
+    icon=":material/database:"
 )
 preparation = st.Page(
     "Tutorial/preparation.py", 
     title="Data Preparation", 
-    # icon=":material/notification_important:"
+    icon=":material/data_thresholding:"
 )
 training = st.Page(
     "Tutorial/training.py", 
     title="Training", 
-    # icon=":material/notification_important:"
+    icon=":material/model_training:"
 )
 testing = st.Page(
     "Tutorial/testing.py", 
     title="Testing", 
-    # icon=":material/notification_important:"
+    icon=":material/experiment:"
 )
 predict = st.Page(
     "Predict/prediction-app.py", 
     title="Iris App", 
-    # icon=":material/notification_important:"
+    icon=":material/output:"
 )
 
 pg = st.navigation(
@@ -39,7 +39,5 @@ pg = st.navigation(
         "Explanation": [data, preparation, training, testing],
     }
 )
-
-# pg = st.navigation([login_page])
 
 pg.run()
