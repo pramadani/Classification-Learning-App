@@ -1,5 +1,7 @@
 import streamlit as st
 
+logo = st.logo("resources/logo_crop.png")
+
 dashboard = st.Page(
     "dashboard.py", 
     title="Dashboard", 
@@ -34,6 +36,7 @@ predict = st.Page(
 
 pg = st.navigation(
     {
+        
         "Dashboard": [dashboard],
         "Predict": [predict],
         "Explanation": [data, preparation, training, testing],

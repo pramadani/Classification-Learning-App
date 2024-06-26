@@ -62,9 +62,9 @@ with capture_stdout() as verbose_output:
 verbose_result = verbose_output.getvalue()
 
 # Print best parameters
-with st.expander("Show/Hide Best Parameters"):
+with st.expander("Show/Hide Best Parameters", icon=":material/visibility:"):
     st.write("Best parameters found: ", grid_svm.best_params_)
 
-with st.expander("GridSearchCV Verbose Output"):
+with st.expander("GridSearchCV Verbose Output", icon=":material/output:"):
     st.text_area('', verbose_result, height=400)
 # Display verbose output in Streamlit
