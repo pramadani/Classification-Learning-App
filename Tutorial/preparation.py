@@ -1,16 +1,66 @@
+import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn import datasets
-from sklearn.model_selection import train_test_split, GridSearchCV, validation_curve
-from sklearn.svm import SVC
-from sklearn.metrics import confusion_matrix, classification_report
 import seaborn as sns
-from sklearn.preprocessing import StandardScaler
-from sklearn.decomposition import PCA
-from sklearn.preprocessing import MinMaxScaler
-from scipy.stats import zscore
-import streamlit as st
 import pandas as pd
+
+
+# Load dataset Iris
+iris = datasets.load_iris()
+
+# Konversi dataset menjadi dataframe
+iris_df = pd.DataFrame(data=iris.data, columns=iris.feature_names)
+
+# Menambahkan kolom target ke dataframe
+iris_df['class'] = iris.target
+
+# Menampilkan dataframe menggunakan Streamlit
+st.write(iris_df)
+y = iris.target
+
+# Count class instances
+class_counts = np.bincount(y)
+
+# Plot class distribution
+plt.figure(figsize=(6, 4))
+plt.bar(np.unique(y), class_counts, color=plt.cm.Set1.colors, tick_label=iris.target_names)
+plt.xlabel('Classes')
+plt.ylabel('Number of instances')
+plt.title('Class distribution of Iris dataset')
+st.pyplot(plt)
+
+describe = iris_df.describe()
+
+st.write(describe)
+
+
+st.subheader('Histograms of Iris Dataset Features')
+fig, axes = plt.subplots(2, 2, figsize=(15, 10))
+axes = axes.flatten()
+
+for i, feature in enumerate(iris.feature_names):
+    sns.histplot(data=iris_df, x=feature, kde=True, bins=20, color='skyblue', ax=axes[i])
+
+
+st.pyplot(fig)
+
+st.subheader('Correlation Heatmap of Iris Dataset Features')
+fig_heatmap, ax_heatmap = plt.subplots(figsize=(8, 6))
+sns.heatmap(iris_df.corr(), annot=True, cmap='viridis', ax=ax_heatmap)
+
+# Menampilkan plot heatmap menggunakan st.pyplot
+st.pyplot(fig_heatmap)
+
+# Visualizing all feature combinations with pairplot
+df = pd.DataFrame(iris.data, columns=iris.feature_names)
+df['species'] = iris.target_names[y]
+
+# Pairplot with hue based on species
+pairplot = sns.pairplot(df, hue='species', palette={'setosa': '#FF6969', 'versicolor': '#F9D689', 'virginica': '#37B7C3'}, markers=['^', 's', 'D'], height=2.5)
+
+# Show the plot
+st.pyplot(pairplot)
 
 iris = datasets.load_iris()
 
@@ -20,17 +70,3 @@ iris_df = pd.DataFrame(data=iris.data, columns=iris.feature_names)
 miss = iris_df.isnull().sum()
 miss_df = pd.DataFrame({'Column': miss.index, 'Missing Values': miss.values})
 st.write(miss_df)
-
-iris_df['class'] = iris.target
-'''
-sebelum
-'''
-st.write(iris_df)
-'''
-sesudah
-'''
-
-normalized = zscore(iris.data, axis=0)
-normalized_df = pd.DataFrame(data=normalized, columns=iris.feature_names)
-normalized_df['class'] = iris.target
-st.write(normalized_df)

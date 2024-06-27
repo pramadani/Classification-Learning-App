@@ -22,11 +22,7 @@ dashboard = st.Page(
     icon=":material/dashboard:", 
     default=True
 )
-data = st.Page(
-    "Tutorial/data.py", 
-    title="Dataset", 
-    icon=":material/database:"
-)
+
 preparation = st.Page(
     "Tutorial/preparation.py", 
     title="Data Preparation", 
@@ -53,7 +49,7 @@ pg = st.navigation(
         
         "Dashboard": [dashboard],
         "Predict": [predict],
-        "Explanation": [data, preparation, training, testing],
+        "Explanation": [preparation, training, testing],
     }
 )
 

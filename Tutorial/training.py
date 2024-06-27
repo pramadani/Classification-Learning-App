@@ -19,15 +19,13 @@ def capture_stdout():
     finally:
         sys.stdout = old_stdout
 
-# Load dataset Iris
-iris = datasets.load_iris()
-X = iris.data
-y = iris.target
+with st.echo():
+    iris = datasets.load_iris()
+    X = iris.data
+    y = iris.target
 
-# Split dataset into train and test sets
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# Visualize train-test split
 fig, ax = plt.subplots(1, 2, figsize=(12, 5))
 
 scatter1 = ax[0].scatter(X_train[:, 0], X_train[:, 1], c=y_train, cmap='viridis')
@@ -46,25 +44,23 @@ plt.tight_layout()
 
 st.pyplot(fig)
 
-param_grid = {
-    'C': [0.1, 1, 10, 100],  # Regularization parameter
-    'gamma': [1, 0.1, 0.01, 0.001],  # Kernel coefficient
-    'kernel': ['linear', 'rbf', 'poly']  # Kernel type
-}
+with st.echo():
+    param_grid = {
+        'C': [0.1, 1, 10, 100],
+        'gamma': [1, 0.1, 0.01, 0.001],
+        'kernel': ['linear', 'rbf', 'poly']
+    }
 
-# Perform GridSearchCV with verbose output
-grid_svm = GridSearchCV(SVC(), param_grid, refit=True, verbose=2, cv=5)
+    grid_svm = GridSearchCV(SVC(), param_grid, refit=True, verbose=2, cv=5)
 
 with capture_stdout() as verbose_output:
-    grid_svm.fit(X_train, y_train)
+    with st.echo():
+        grid_svm.fit(X_train, y_train)
 
-# Retrieve verbose output
 verbose_result = verbose_output.getvalue()
 
-# Print best parameters
 with st.expander("Show/Hide Best Parameters", icon=":material/visibility:"):
     st.write("Best parameters found: ", grid_svm.best_params_)
 
 with st.expander("GridSearchCV Verbose Output", icon=":material/output:"):
     st.text_area('', verbose_result, height=400)
-# Display verbose output in Streamlit
