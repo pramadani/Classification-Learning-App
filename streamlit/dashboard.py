@@ -7,7 +7,7 @@ from tensorflow.keras.preprocessing import image
 st.title("Face Recognition from Webcam")
 
 # Load your Keras model for face recognition
-loaded_model = load_model('./resources/your_model.h5')
+loaded_model = load_model('./resources/model.h5')
 
 # Access the webcam (use 0 for default camera, 1 or higher for external cameras)
 cap = cv2.VideoCapture(0)
@@ -57,7 +57,7 @@ while cap.isOpened():
         
         # Put the text next to the rectangle
         cv2.putText(frame, text, (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 0, 0), 2)
-        
+        face_gray_resized = cv2.resize(face_gray, (100, 100))
         face_frames.append((face_gray_resized, text))
 
     # Display the resulting frame
