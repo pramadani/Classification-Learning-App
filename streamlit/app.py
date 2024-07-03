@@ -44,11 +44,17 @@ predict = st.Page(
     icon=":material/output:"
 )
 
+predict2 = st.Page(
+    "prediksi.py", 
+    title="Prediksi", 
+    icon=":material/output:"
+)
+
 pg = st.navigation(
     {
         
         "Dashboard": [dashboard],
-        "Predict": [predict],
+        "Predict": [predict, predict2],
         "Explanation": [preparation, training, testing],
     }
 )
