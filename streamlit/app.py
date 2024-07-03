@@ -14,48 +14,24 @@ st.image("resources/logo_crop.png", width=150)
 
 st.write("\n")
 st.write("\n")
-st.write("\n")
 
 dashboard = st.Page(
     "dashboard.py", 
-    title="Dashboard", 
-    icon=":material/dashboard:", 
+    title="Recognition App", 
+    icon=":material/videocam:", 
     default=True
 )
 
-preparation = st.Page(
-    "Tutorial/preparation.py", 
-    title="Data Preparation", 
-    icon=":material/data_thresholding:"
-)
-training = st.Page(
-    "Tutorial/training.py", 
-    title="Training", 
-    icon=":material/model_training:"
-)
-testing = st.Page(
-    "Tutorial/testing.py", 
-    title="Testing", 
-    icon=":material/experiment:"
-)
 predict = st.Page(
-    "Predict/prediction-app.py", 
-    title="Iris App", 
-    icon=":material/output:"
-)
-
-predict2 = st.Page(
     "prediksi.py", 
-    title="Prediksi", 
-    icon=":material/output:"
+    title="Image Recognition", 
+    icon=":material/image:"
 )
 
 pg = st.navigation(
     {
         
-        "Dashboard": [dashboard],
-        "Predict": [predict, predict2],
-        "Explanation": [preparation, training, testing],
+        "Dashboard": [dashboard, predict],
     }
 )
 
