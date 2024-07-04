@@ -1,11 +1,11 @@
 import streamlit as st
 import cv2
 import numpy as np
-from tensorflow.keras.models import load_model
+from dashboard import loaded_model
 from tensorflow.keras.preprocessing import image
 
 # Load your Keras model for face recognition
-loaded_model = load_model('./resources/model.h5')
+# loaded_model = load_model('./resources/model.h5')
 
 # Load pre-trained face detector from OpenCV
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')

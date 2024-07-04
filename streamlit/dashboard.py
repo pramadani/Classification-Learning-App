@@ -10,7 +10,7 @@ st.title("Face Recognition from Webcam")
 loaded_model = load_model('./resources/model.h5')
 
 # Access the webcam (use 0 for default camera, 1 or higher for external cameras)
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(4)
 
 stframe = st.empty()
 stframe_faces = st.empty()
