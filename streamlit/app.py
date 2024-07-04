@@ -17,6 +17,12 @@ st.image("resources/logo_crop.png", width=150)
 st.write("\n")
 st.write("\n")
 
+main = st.Page(
+    "main.py", 
+    title="Main", 
+    icon=":material/videocam:", 
+)
+
 dashboard = st.Page(
     "dashboard.py", 
     title="Recognition App", 

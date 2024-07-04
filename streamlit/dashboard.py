@@ -1,16 +1,16 @@
 import cv2
 import streamlit as st
 import numpy as np
-from tensorflow.keras.models import load_model
+from main import loaded_model
 from tensorflow.keras.preprocessing import image
 
 st.title("Face Recognition from Webcam")
 
 # Load your Keras model for face recognition
-loaded_model = load_model('./resources/model.h5')
+# loaded_model = load_model('./resources/model.h5')
 
 # Access the webcam (use 0 for default camera, 1 or higher for external cameras)
-cap = cv2.VideoCapture(4)
+cap = cv2.VideoCapture(0)
 
 stframe = st.empty()
 stframe_faces = st.empty()
@@ -38,7 +38,7 @@ while cap.isOpened():
     # Draw rectangle around the faces and put the predicted name next to the rectangle
     face_frames = []
     for (x, y, w, h) in faces:
-        cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
+        cv2.rectangle(frame, (x, y), (x + w, y + h), (150, 207, 255), 2)
         
         # Crop the face from the frame
         face = frame[y:y+h, x:x+w]
@@ -56,7 +56,7 @@ while cap.isOpened():
         text = f"{predicted_class} ({np.max(predictions):.2f})"
         
         # Put the text next to the rectangle
-        cv2.putText(frame, text, (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 0, 0), 2)
+        cv2.putText(frame, text, (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (150, 207, 255), 2)
         face_gray_resized = cv2.resize(face_gray, (100, 100))
         face_frames.append((face_gray_resized, text))
 

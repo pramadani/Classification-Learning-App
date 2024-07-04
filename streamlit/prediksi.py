@@ -1,7 +1,7 @@
 import streamlit as st
 import cv2
 import numpy as np
-from dashboard import loaded_model
+from main import loaded_model
 from tensorflow.keras.preprocessing import image
 
 # Load your Keras model for face recognition
